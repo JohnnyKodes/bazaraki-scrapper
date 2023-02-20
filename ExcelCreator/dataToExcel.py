@@ -1,4 +1,5 @@
 import openpyxl
+import os
 from Data.carData import CarData
 from Data.Constants import COLUMN_TITLES
 
@@ -19,5 +20,10 @@ def serializeToExcelSheet(carData : CarData):
         
         setHeaders(worksheet)
         setCarData(carData, worksheet, brand)    
+
+    path = os.path.join(os.getcwd(), "ScrappedData")
+
+    if not os.path.exists(path):
+        os.mkdir(path)
 
     workbook.save('ScrappedData\BazarakiScrappedData.xlsx')
